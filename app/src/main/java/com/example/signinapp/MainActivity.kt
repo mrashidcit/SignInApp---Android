@@ -14,6 +14,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.signinapp.ui.theme.SignInAppTheme
+import com.example.signinapp.common.Routes
+import com.example.signinapp.ui.splash.SplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,11 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = Routes.splash) {
 
-                    composable(Routes)
+                    composable(Routes.splash) {
+                        SplashScreen() { route ->
+                            navController.navigate(route)
+                        }
+                    }
 
                 }
 

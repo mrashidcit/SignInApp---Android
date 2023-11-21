@@ -1,20 +1,51 @@
 package com.example.signinapp.ui.splash
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
+import com.example.signinapp.common.Routes
+import com.example.signinapp.ui.theme.SignInAppTheme
+import kotlinx.coroutines.delay
+
+private const val SplashTimeInMiliseconds = 2000L
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    navigateNext: (String) -> Unit,
+) {
+
+    // This will always refer to the latest onTimeout function that
+    // LandingScreen was recomposed with
+    val currentOnTimeout by rememberUpdatedState {
+        navigateNext(Routes.signIn)
+    }
+
+    LaunchedEffect(true) {
+        delay(SplashTimeInMiliseconds)
+        currentOnTimeout()
+    }
+
     Column(
         modifier = Modifier
-            .background(color = Color.White)
+            .fillMaxSize()
+            .background(color = Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = "Splash Screen"
+            text = "SignIn App",
+            fontSize = 30.sp
         )
     }
 }
@@ -22,6 +53,10 @@ fun SplashScreen() {
 @Preview
 @Composable
 fun SplashScreenPreview() {
+    SignInAppTheme {
+        SplashScreen() {
 
+        }
+    }
 }
 
