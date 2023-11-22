@@ -2,11 +2,14 @@ package com.example.signinapp.ui.signin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,10 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.signinapp.R
+import com.example.signinapp.common.Routes
 import com.example.signinapp.ui.theme.SignInAppTheme
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(
+    viewModel: SignInViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    navigateNext: (String) -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -29,7 +36,8 @@ fun SignInScreen() {
                 color = Color.White,
             )
             .padding(16.dp),
-
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
         Row(
@@ -39,11 +47,17 @@ fun SignInScreen() {
                     color = Color.Blue.copy(0.5f),
                     shape = RoundedCornerShape(12.dp),
                 )
+                .clickable {
+                    navigateNext(Routes.home)
+                }
                 .padding(12.dp)
+                .padding(horizontal = 24.dp)
             ,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
+                modifier = Modifier
+                    .size(24.dp),
                 painter = painterResource(id = R.drawable.ic_google_icon),
                 contentDescription = null,
                 )
@@ -61,7 +75,9 @@ fun SignInScreen() {
 @Composable
 fun SignInScreenPreview() {
     SignInAppTheme {
-        SignInScreen()
+        SignInScreen() {
+
+        }
     }
 }
 

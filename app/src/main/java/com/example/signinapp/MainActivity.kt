@@ -15,6 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.signinapp.ui.theme.SignInAppTheme
 import com.example.signinapp.common.Routes
+import com.example.signinapp.ui.home.HomeScreen
+import com.example.signinapp.ui.signin.SignInScreen
 import com.example.signinapp.ui.splash.SplashScreen
 
 class MainActivity : ComponentActivity() {
@@ -27,12 +29,29 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = Routes.splash) {
+                    startDestination = Routes.splash
+                ) {
 
                     composable(Routes.splash) {
                         SplashScreen() { route ->
                             navController.navigate(route)
                         }
+                    }
+
+                    composable(Routes.signIn) {
+                        SignInScreen(navigateNext = { route ->
+                            navController.navigate(route)
+                        })
+                    }
+
+                    composable(Routes.home) {
+                        HomeScreen(navigateNext = { route ->
+                            navController.navigate(route)
+                        },
+                            navigateBack = {
+                                navController.popBackStack(Routes.signIn, inclusive = false)
+                            }
+                        )
                     }
 
                 }
