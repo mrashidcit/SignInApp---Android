@@ -183,6 +183,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1084553737960-nd8dtr2mhlu62u91v15sfe0ru0fjheb6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rashidsaleem.signinappyt",
+            "certificate_hash": "dbc2d637a4b9fb76be411ed24fbbd206f3e129c5"
+          }
+        },
+        {
           "client_id": "1084553737960-89el3h6h2hvqup75ttnhe7lju624gtbr.apps.googleusercontent.com",
           "client_type": 3
         }
