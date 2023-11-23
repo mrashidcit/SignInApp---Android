@@ -1,4 +1,4 @@
-package com.example.signinapp.ui.theme
+package com.rashidsaleem.signinappyt.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

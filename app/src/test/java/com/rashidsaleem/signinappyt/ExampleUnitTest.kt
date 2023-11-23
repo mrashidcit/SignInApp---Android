@@ -1,4 +1,4 @@
-package com.example.signinapp
+package com.rashidsaleem.signinappyt
 
 import org.junit.Test
 

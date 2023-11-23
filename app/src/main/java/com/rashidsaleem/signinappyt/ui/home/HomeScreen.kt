@@ -1,4 +1,4 @@
-package com.example.signinapp.ui.home
+package com.rashidsaleem.signinappyt.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,9 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import com.example.signinapp.common.Routes
-import com.example.signinapp.ui.theme.SignInAppTheme
+import com.rashidsaleem.signinappyt.ui.theme.SignInAppTheme
 
 @Composable
 fun HomeScreen(

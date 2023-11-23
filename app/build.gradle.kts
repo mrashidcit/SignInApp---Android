@@ -1,14 +1,20 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+}
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").reader())
 }
 
 android {
-    namespace = "com.example.signinapp"
+    namespace = "com.rashidsaleem.signinappyt"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.signinapp"
+        applicationId = "com.rashidsaleem.signinappyt"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -18,6 +24,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"${localProperties["GOOGLE_CLIENT_ID"]}\"")
     }
 
     buildTypes {
@@ -38,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -68,6 +76,12 @@ dependencies {
     // navigation
     implementation("androidx.navigation:navigation-compose:2.7.5")
 
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-auth")
+
+    // Google Play services
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

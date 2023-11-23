@@ -1,4 +1,4 @@
-package com.example.signinapp
+package com.rashidsaleem.signinappyt
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

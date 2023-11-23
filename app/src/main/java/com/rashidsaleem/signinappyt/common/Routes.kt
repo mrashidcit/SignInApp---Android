@@ -1,4 +1,4 @@
-package com.example.signinapp.common
+package com.rashidsaleem.signinappyt.common
 
 object Routes {
     val splash = "splash"

@@ -1,4 +1,4 @@
-package com.example.signinapp.ui.home
+package com.rashidsaleem.signinappyt.ui.home
 
 data class HomeUiState(
     val name: String = "",

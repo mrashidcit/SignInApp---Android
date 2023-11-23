@@ -1,4 +1,4 @@
-package com.example.signinapp.ui.splash
+package com.rashidsaleem.signinappyt.ui.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.signinapp.common.Routes
-import com.example.signinapp.ui.theme.SignInAppTheme
+import com.rashidsaleem.signinappyt.common.Routes
+import com.rashidsaleem.signinappyt.ui.theme.SignInAppTheme
 import kotlinx.coroutines.delay
 
 private const val SplashTimeInMiliseconds = 2000L
