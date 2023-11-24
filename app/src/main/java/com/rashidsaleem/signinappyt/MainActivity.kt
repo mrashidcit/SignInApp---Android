@@ -35,19 +35,31 @@ class MainActivity : ComponentActivity() {
                         SplashScreen() { route ->
                             navController.navigate(
                                 route = route,
-//                                navOptions = navOptions {
-//                                    this.popUpTo(route) {
-//                                        this.inclusive = false
-//                                    }
-//                                }
+                                navOptions = navOptions {
+                                    this.popUpTo(
+                                        route = Routes.splash,
+                                        popUpToBuilder = {
+                                            this.inclusive = true
+                                        }
+                                    )
+                                }
                             )
-//                            navController.popBackStack(route, true)
                         }
                     }
 
                     composable(Routes.signIn) {
                         SignInScreen(navigateNext = { route ->
-                            navController.navigate(route)
+                            navController.navigate(
+                                route = route,
+                                navOptions = navOptions {
+                                    this.popUpTo(
+                                        route = Routes.signIn,
+                                        popUpToBuilder = {
+                                            this.inclusive = true
+                                        }
+                                    )
+                                }
+                            )
                         })
                     }
 
@@ -55,14 +67,10 @@ class MainActivity : ComponentActivity() {
                         HomeScreen(navigateNext = { route, popUpToRoute ->
                             navController.navigate(
                                 route = route,
-                                navOptions = navOptions {
-                                    if (popUpToRoute)
-                                        popUpTo(route)
-                                }
                             )
                         },
                             navigateBack = {
-                                navController.popBackStack(Routes.signIn, inclusive = false)
+                                navController.popBackStack(Routes.signIn, inclusive = true)
                             }
                         )
                     }
