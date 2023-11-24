@@ -3,7 +3,6 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
 }
 val localProperties = Properties().apply {
     load(rootProject.file("local.properties").reader())
@@ -76,13 +75,6 @@ dependencies {
 
     // navigation
     implementation("androidx.navigation:navigation-compose:2.7.5")
-
-    // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
-    implementation("com.google.firebase:firebase-auth")
-
-    // Google Play services
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
