@@ -64,9 +64,18 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(Routes.home) {
-                        HomeScreen(navigateNext = { route, popUpToRoute ->
+                        HomeScreen(
+                            navigateNext = { route, popUpToRoute ->
                             navController.navigate(
                                 route = route,
+                                navOptions = navOptions {
+                                    this.popUpTo(
+                                        route = Routes.home,
+                                        popUpToBuilder = {
+                                            this.inclusive = true
+                                        }
+                                    )
+                                }
                             )
                         },
                             navigateBack = {

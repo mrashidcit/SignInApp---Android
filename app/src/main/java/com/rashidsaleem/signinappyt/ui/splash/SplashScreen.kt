@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.rashidsaleem.signinappyt.common.Routes
 import com.rashidsaleem.signinappyt.ui.theme.SignInAppTheme
 import kotlinx.coroutines.delay
@@ -26,11 +28,20 @@ fun SplashScreen(
     navigateNext: (String) -> Unit,
 ) {
 
+    val currentUser = remember {
+        Firebase.auth.currentUser
+    }
+
     // This will always refer to the latest onTimeout function that
     // LandingScreen was recomposed with
     val currentOnTimeout by rememberUpdatedState {
-        navigateNext(Routes.signIn)
+        if (currentUser != null) {
+            navigateNext(Routes.home)
+        } else {
+            navigateNext(Routes.signIn)
+        }
     }
+
 
     LaunchedEffect(true) {
         delay(SplashTimeInMiliseconds)
