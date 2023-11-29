@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +30,10 @@ fun HomeScreen(
     navigateNext: (String, Boolean) -> Unit,
     navigateBack: () -> Unit
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     HomeScreenContent(
+        uiState = uiState,
         onEvent = { event ->
             when (event) {
                 is HomeEvent.NavigateNext -> navigateNext(event.value, false)
@@ -44,11 +50,10 @@ fun HomeScreen(
 
 @Composable
 private fun HomeScreenContent(
+    uiState: HomeUiState,
     onEvent: (HomeEvent) -> Unit
 ) {
-    val currentUser = remember {
-        Firebase.auth.currentUser
-    }
+
 
     Column(
         modifier = Modifier
@@ -60,11 +65,11 @@ private fun HomeScreenContent(
     ) {
 
         Text(
-            text = "Name: ${currentUser?.displayName}"
+            text = "Name: ${uiState.currentUser?.displayName}"
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "email: ${currentUser?.email}"
+            text = "email: ${uiState.currentUser?.email}"
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(onClick = {
@@ -81,7 +86,15 @@ private fun HomeScreenContent(
 @Composable
 fun HomeScreenPreview() {
     SignInAppTheme {
-        HomeScreenContent(onEvent = {
+        val uiState = remember {
+            mutableStateOf(
+                HomeUiState()
+            )
+        }
+
+        HomeScreenContent(
+            uiState = uiState.value,
+            onEvent = {
 
         })
     }

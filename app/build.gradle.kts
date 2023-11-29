@@ -25,7 +25,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"${localProperties["GOOGLE_CLIENT_ID"]}\"")
         buildConfigField("String", "GOOGLE_SERVER_KEY", "\"${localProperties["GOOGLE_SERVER_KEY"]}\"")
     }
 
